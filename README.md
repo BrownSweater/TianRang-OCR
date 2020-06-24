@@ -51,7 +51,7 @@ docker build --no-cache -t harbor.tianrang.com/traffic/lpr:1.0 .
 
 ### 部署接口文档
 
-[部署接口文档](wiki/车牌识别服务部署文档.md)
+[部署接口文档](wiki/车牌识别接口文档.md)
 
 ### Flask Web demo
 
