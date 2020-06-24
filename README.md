@@ -27,7 +27,7 @@ docker build --no-cache -t harbor.tianrang.com/traffic/lpr:1.0 .
 - [config配置](wiki/config配置示例.md)
 - [训练、验证、推理](wiki/训练、验证及推理.md)
 
-- 导出模型：`python -c "python -c "from utils.utils import export_model; export_model('output/shufflenet05_rec/checkpoint/model_best.pth', 'weights/rec_shufflenet.pth')""`
+- 导出模型：`python -c "python -c "from utils.utils import export_model; export_model('output/shufflenet05_rec/checkpoint/model_best.pth', 'weights/rec_shufflenet.pth')"`
 
 
 
