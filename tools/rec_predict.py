@@ -37,6 +37,7 @@ class RecModel:
         checkpoint = torch.load(model_path, map_location=self.device)
 
         config = checkpoint['config']
+        config['arch']['backbone']['args']['pretrained'] = False
         # print(config)
         self.model = get_model(config['arch'])
         # 临时

@@ -48,7 +48,7 @@ class DetModel:
         checkpoint = torch.load(model_path, map_location=self.device)
 
         config = checkpoint['config']
-        config['arch']['args']['pretrained'] = False
+        config['arch']['backbone']['args']['pretrained'] = False
         self.model = get_model(config['arch'])
         # config['post_processing']['args']['unclip_ratio'] = 3
         self.post_process = get_post_processing(config['post_processing'])

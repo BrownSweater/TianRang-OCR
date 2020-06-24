@@ -8,7 +8,16 @@ TianRang-OCR致力于打造一个实用的OCR工具库，集成常见的OCR算�
 
 ## 构建Docker镜像
 
+| 镜像版本                            | 说明         |
+| ----------------------------------- | ------------ |
+| harbor.tianrang.com/traffic/lpr:1.0 | 初次基础镜像 |
+|                                     |              |
 
+
+
+```shell
+docker build --no-cache -t harbor.tianrang.com/traffic/lpr:1.0 .
+```
 
 
 
@@ -50,7 +59,7 @@ TianRang-OCR致力于打造一个实用的OCR工具库，集成常见的OCR算�
 
 `python app_demo.py --port 8484 --rec_model_path weights/rec_res18.pth`
 
-## Result
+### Result
 
 [CCPD数据集简介及车牌识别结果](wiki/CCPD数据集简介及结果.md)
 
@@ -68,7 +77,7 @@ TianRang-OCR致力于打造一个实用的OCR工具库，集成常见的OCR算�
 
 
 
-- 2020.6.24，添加dockerfile；添加requirments.txt；
+- 2020.6.24，添加dockerfile；添加requirments.txt；修复部署时会下载ImageNet预训练模型的问题。
 - 2020.6.23初次提交：支持DBNet作为检测模型；多种backbone的CTCHead的识别模型。
 - [more](wiki/更新.md)
 

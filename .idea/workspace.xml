@@ -3,7 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="3d93ac9f-a477-4623-8a02-b3d9a5f6fef7" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tools/det_predict.py" beforeDir="false" afterPath="$PROJECT_DIR$/tools/det_predict.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tools/rec_predict.py" beforeDir="false" afterPath="$PROJECT_DIR$/tools/rec_predict.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wiki/车牌识别服务部署文档.md" beforeDir="false" afterPath="$PROJECT_DIR$/wiki/车牌识别服务部署文档.md" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -192,7 +197,7 @@
       <option name="presentableId" value="Default" />
       <updated>1591003754497</updated>
       <workItem from="1591003756012" duration="44558000" />
-      <workItem from="1591236892123" duration="217262000" />
+      <workItem from="1591236892123" duration="218578000" />
     </task>
     <servers />
   </component>

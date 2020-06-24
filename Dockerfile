@@ -13,6 +13,6 @@ WORKDIR /tianrang-ocr
 RUN apt-get update && apt-get install -y libglib2.0-0 libsm6 libxrender-dev libxext6 vim \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/*
-RUN pip --default-timeout=600 install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
+RUN pip --default-timeout=600 install --ignore-installed -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
 
 
