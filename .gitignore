@@ -5,3 +5,6 @@ c.py
 output/
 test/
 static/
+.idea
+.DS_Store
+!flask_utils/config.json

@@ -1,0 +1,14 @@
+{
+    "debug": false,
+    "det_model_path": "weights/det.pth",
+    "det_short_size": 416,
+    "det_thre": 0.7,
+    "device_id": null,
+    "file_record": true,
+    "host": "0.0.0.0",
+    "log_dir": "output/log/lpr.log",
+    "port": 8080,
+    "rec_crop_ratio": 1.05,
+    "rec_model_path": "weights/rec_res18.pth",
+    "use_hyperlpr": true
+}

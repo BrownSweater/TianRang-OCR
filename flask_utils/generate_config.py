@@ -15,12 +15,12 @@ def main():
     cfg.det_model_path = 'weights/det.pth'
     cfg.det_thre = 0.7
     cfg.det_short_size = 416
-    cfg.rec_model_path = 'weights/rec.pth'
+    cfg.rec_model_path = 'weights/rec_res18.pth'
     cfg.rec_crop_ratio = 1.05
     cfg.file_record = True
     cfg.log_dir = 'output/log/lpr.log'
     cfg.debug = False
-    cfg.use_hyperlpr = False
+    cfg.use_hyperlpr = True
 
     return cfg
 

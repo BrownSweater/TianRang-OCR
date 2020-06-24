@@ -91,7 +91,7 @@ TianRang-OCR致力于打造一个实用的OCR工具库，集成常见的OCR算�
 - [ ] 多卡训练识别模型
 - [ ] 更多开源数据集的训练结果
 - [ ] API文档
-- [ ] Dockerfile
-- [ ] requirements.txt
+- [x] Dockerfile
+- [x] requirements.txt
 - [ ] 文档！文档！文档！！！！
 

@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3d93ac9f-a477-4623-8a02-b3d9a5f6fef7" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flask_utils/generate_config.py" beforeDir="false" afterPath="$PROJECT_DIR$/flask_utils/generate_config.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -59,7 +60,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.make_shrink_map">
+  <component name="RunManager" selected="Python.generate_config">
     <configuration name="b" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="tianrang-ocr" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -172,8 +173,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.make_shrink_map" />
         <item itemvalue="Python.generate_config" />
+        <item itemvalue="Python.make_shrink_map" />
         <item itemvalue="Python.b" />
         <item itemvalue="Python.mobilenetv3" />
         <item itemvalue="Python.rec_model" />
@@ -191,7 +192,7 @@
       <option name="presentableId" value="Default" />
       <updated>1591003754497</updated>
       <workItem from="1591003756012" duration="44558000" />
-      <workItem from="1591236892123" duration="214948000" />
+      <workItem from="1591236892123" duration="216573000" />
     </task>
     <servers />
   </component>
@@ -214,7 +215,7 @@
     <SUITE FILE_PATH="coverage/tianrang_ocr$mobilenetv3.coverage" NAME="mobilenetv3 Coverage Results" MODIFIED="1592372496627" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/model/backbone" />
     <SUITE FILE_PATH="coverage/tianrang_ocr$b.coverage" NAME="b Coverage Results" MODIFIED="1592550932407" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/tianrang_ocr$make_shrink_map.coverage" NAME="make_shrink_map Coverage Results" MODIFIED="1592877459835" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/data_loader/modules" />
-    <SUITE FILE_PATH="coverage/tianrang_ocr$generate_config.coverage" NAME="generate_config Coverage Results" MODIFIED="1592807146456" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/flask_utils" />
+    <SUITE FILE_PATH="coverage/tianrang_ocr$generate_config.coverage" NAME="generate_config Coverage Results" MODIFIED="1592966447508" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/flask_utils" />
     <SUITE FILE_PATH="coverage/tianrang_ocr$det_model.coverage" NAME="det_model Coverage Results" MODIFIED="1591781229273" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/model/architecture" />
     <SUITE FILE_PATH="coverage/tianrang_ocr$rec_model.coverage" NAME="rec_model Coverage Results" MODIFIED="1591783400578" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/model/architecture" />
   </component>
