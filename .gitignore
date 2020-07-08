@@ -8,3 +8,4 @@ static/
 .idea
 .DS_Store
 !flask_utils/config.json
+!service_config.json

@@ -17,10 +17,6 @@ from tools.det_predict import DetModel
 from tools.rec_predict import RecModel
 from data_loader.modules.random_crop_data import CropWordBox
 
-# macos
-if platform.system() == 'Darwin':
-    os.environ['KMP_DUPLICATE_LIB_OK'] = 'True'
-
 
 class AlgoInterface(object):
     def __init__(self, json_config_path):
@@ -134,8 +130,18 @@ class AlgoInterface(object):
 
 
 if __name__ == '__main__':
-    model = AlgoInterface(json_config_path='config.json')
+    # macos
+    if platform.system() == 'Darwin':
+        os.environ['KMP_DUPLICATE_LIB_OK'] = 'True'
+    PATH = os.path.abspath(os.path.dirname(__file__))
+    model = AlgoInterface(json_config_path=os.path.join(PATH, 'service_config.json'))
     results, draw_img = model('苏A5RH08.jpg')
     print(results)
     cv2.imshow('test', draw_img)
     cv2.waitKey(0)
+
+if __name__ != '__main__':
+    if platform.system() == 'Darwin':
+        os.environ['KMP_DUPLICATE_LIB_OK'] = 'True'
+    PATH = os.path.abspath(os.path.dirname(__file__))
+    model = AlgoInterface(json_config_path=os.path.join(PATH, 'service_config.json'))

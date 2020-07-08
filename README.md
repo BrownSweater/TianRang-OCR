@@ -59,6 +59,10 @@ docker build --no-cache -t harbor.tianrang.com/traffic/lpr:1.0 .
 
 `python app_demo.py --port 8484 --rec_model_path weights/rec_res18.pth`
 
+### 算法接口调用文档
+
+[部署接口文档](wiki/算法接口文档.md)
+
 ### Result
 
 [CCPD数据集简介及车牌识别结果](wiki/CCPD数据集简介及结果.md)
