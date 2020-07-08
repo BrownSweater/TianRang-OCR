@@ -15,7 +15,7 @@ import glob
 import matplotlib.pyplot as plt
 import numpy as np
 from PIL import Image, ImageDraw, ImageFont
-from natsort import natsorted
+# from natsort import natsorted
 
 
 def parse_config(config: dict) -> dict:

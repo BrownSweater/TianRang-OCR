@@ -6,17 +6,18 @@ class Logger(object):
     '''
     receive and save image from redis stream
     '''
-    def __init__(self, input_log_path):
+    def __init__(self, input_log_path, name=None):
 
         logFormatterStr = "%(asctime)s - %(levelname)s - [%(filename)s: %(lineno)d] - %(message)s"
         logging.basicConfig(level = logging.INFO,format = logFormatterStr)
-        self._logger = logging.getLogger()
+        if name is None:
+            self._logger = logging.getLogger()
+        else:
+            self._logger = logging.getLogger(name)
         self._logger.setLevel(logging.INFO)
         logging.getLogger("kafka").setLevel(logging.WARNING)
 
         input_log_dir = path.dirname(input_log_path)
-        # log_dir =  os.path.join('..', log_dir)
-        # print(log_dir)
         if input_log_dir and not path.exists(input_log_dir):
             makedirs(input_log_dir)
 
