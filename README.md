@@ -61,7 +61,7 @@ docker build --no-cache -t harbor.tianrang.com/traffic/lpr:1.0 .
 
 ### 算法接口调用文档
 
-[部署接口文档](wiki/算法接口文档.md)
+[算法接口调用文档](wiki/算法接口文档.md)
 
 ### Result
 
@@ -80,7 +80,7 @@ docker build --no-cache -t harbor.tianrang.com/traffic/lpr:1.0 .
 ## 近期更新
 
 
-
+- 2020.7.8，添加算法服务的对外调用接口
 - 2020.6.24，添加dockerfile；添加requirments.txt；修复部署时会下载ImageNet预训练模型的问题。
 - 2020.6.23初次提交：支持DBNet作为检测模型；多种backbone的CTCHead的识别模型。
 - [more](wiki/更新.md)
