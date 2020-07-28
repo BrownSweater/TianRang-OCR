@@ -113,11 +113,11 @@ class AlgoInterface(object):
             text, prob, t = self.rec_model.predict(rec_img)
             rec_time += t
             prob = round(prob, 3)
-            if self.vis:
-                draw_img = cv2ImgAddText(draw_img, text, (box[0][0], box[0][1] - 40), textColor=(255, 255, 0),
-                                         textSize=40)
-                draw_img = cv2ImgAddText(draw_img, f'{prob:.3f}', (box[3][0], box[3][1] + 5), textColor=(255, 255, 0),
-                                         textSize=40)
+            # if self.vis:
+            #     draw_img = cv2ImgAddText(draw_img, text, (box[0][0], box[0][1] - 40), textColor=(255, 255, 0),
+            #                              textSize=40)
+            #     draw_img = cv2ImgAddText(draw_img, f'{prob:.3f}', (box[3][0], box[3][1] + 5), textColor=(255, 255, 0),
+            #                              textSize=40)
             results.append({'box': box.tolist(), 'recognition': text, 'prob': prob})
         self.logger.info(f'========================================================================\n'
                          f'det preprocess time: {det_time[0] * 1000: .1f}ms \n'
