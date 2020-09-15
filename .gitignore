@@ -12,3 +12,4 @@ static/
 *.pyc
 __pycache__
 */__pycache__
+!interface_config.json
