@@ -89,3 +89,13 @@ class DBHead(nn.Module):
 
     def step_function(self, x, y):
         return torch.reciprocal(1 + torch.exp(-self.k * (x - y)))
+
+
+class PSEHead(nn.Module):
+    def __int__(self, in_channels, num_class):
+        self.conv = nn.Conv2d(256, num_class, kernel_size=1, stride=1, padding=0)
+
+    def forward(self, x):
+        out = self.conv(x)
+        return out
+

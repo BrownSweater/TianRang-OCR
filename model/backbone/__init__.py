@@ -8,4 +8,4 @@ from .resnet import *
 from .dtrb import ResNet_FeatureExtractor
 from .LPRNET import LPRNet
 from .shufflenetv2 import *
-from .mobilenetv3 import mobilenetv3
+from .mobilenetv3 import mobilenetv3, mobilenetv3_small, mobilenetv3_large
