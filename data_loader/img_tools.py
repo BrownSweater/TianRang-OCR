@@ -8,7 +8,7 @@ import pathlib
 import time
 import os
 import glob
-from natsort import natsorted
+# from natsort import natsorted
 import cv2
 import matplotlib.pyplot as plt
 import numpy as np
@@ -32,7 +32,6 @@ def get_datalist(train_data_path):
                     if img_path.exists() and img_path.stat().st_size > 0 and label_path.exists() and label_path.stat().st_size > 0:
                         train_data.append((str(img_path), str(label_path)))
     return train_data
-
 
 
 def expand_polygon(polygon):
@@ -60,33 +59,48 @@ def order_points_clockwise(pts):
     return rect
 
 
+#
+# def _order_points(pts):
+#     # 根据x坐标对点进行排序
+#     """
+#     ---------------------
+#     作者：Tong_T
+#     来源：CSDN
+#     原文：https://blog.csdn.net/Tong_T/article/details/81907132
+#     版权声明：本文为博主原创文章，转载请附上博文链接！
+#     """
+#     x_sorted = pts[np.argsort(pts[:, 0]), :]
+#
+#     # 从排序中获取最左侧和最右侧的点
+#     # x坐标点
+#     left_most = x_sorted[:2, :]
+#     right_most = x_sorted[2:, :]
+#
+#     # 现在，根据它们的y坐标对最左边的坐标进行排序，这样我们就可以分别抓住左上角和左下角
+#     left_most = left_most[np.argsort(left_most[:, 1]), :]
+#     (tl, bl) = left_most
+#
+#     # 现在我们有了左上角坐标，用它作为锚来计算左上角和右上角之间的欧氏距离;
+#     # 根据毕达哥拉斯定理，距离最大的点将是我们的右下角
+#     distance = dist.cdist(tl[np.newaxis], right_most, "euclidean")[0]
+#     (br, tr) = right_most[np.argsort(distance)[::-1], :]
+#
+#     # 返回左上角，右上角，右下角和左下角的坐标
+#     return np.array([tl, tr, br, bl], dtype="float32")
+
+
 def _order_points(pts):
-    # 根据x坐标对点进行排序
-    """
-    ---------------------
-    作者：Tong_T
-    来源：CSDN
-    原文：https://blog.csdn.net/Tong_T/article/details/81907132
-    版权声明：本文为博主原创文章，转载请附上博文链接！
-    """
-    x_sorted = pts[np.argsort(pts[:, 0]), :]
+    '''
+    对于按照顺序排列的点重新排列，返回左上顶点开始，顺时针旋转的四个点坐标
+    :param pts:
+    :return:
+    '''
+    p1, p2, p3, p4 = pts
+    pts[(0, 2), :] = pts[(2, 0), :] if p1[1] > p3[1] else pts[(0, 2), :]
+    pts[(1, 3), :] = pts[(3, 1), :] if p2[1] > p4[1] else pts[(1, 3), :]
+    pts = pts[(1, 0, 3, 2), :] if pts[0][0] > pts[1][0] else pts[(0, 1, 2, 3), :]
 
-    # 从排序中获取最左侧和最右侧的点
-    # x坐标点
-    left_most = x_sorted[:2, :]
-    right_most = x_sorted[2:, :]
-
-    # 现在，根据它们的y坐标对最左边的坐标进行排序，这样我们就可以分别抓住左上角和左下角
-    left_most = left_most[np.argsort(left_most[:, 1]), :]
-    (tl, bl) = left_most
-
-    # 现在我们有了左上角坐标，用它作为锚来计算左上角和右上角之间的欧氏距离;
-    # 根据毕达哥拉斯定理，距离最大的点将是我们的右下角
-    distance = dist.cdist(tl[np.newaxis], right_most, "euclidean")[0]
-    (br, tr) = right_most[np.argsort(distance)[::-1], :]
-
-    # 返回左上角，右上角，右下角和左下角的坐标
-    return np.array([tl, tr, br, bl], dtype="float32")
+    return pts.astype(np.float32)
 
 
 def load(file_path: str):
@@ -94,3 +108,12 @@ def load(file_path: str):
     func_dict = {'.txt': _load_txt, '.json': _load_json, '.list': _load_txt}
     assert file_path.suffix in func_dict
     return func_dict[file_path.suffix](file_path)
+
+
+if __name__ == '__main__':
+    a = ['51.31', '58.61', '189.33', '58.61', '189.33', '107.12', '51.31', '107.12', '皖S1C876']
+    b = np.array(list(map(float, a[:8]))).reshape(-1, 2)
+    print(b)
+    box = _order_points(b)
+    print(box)
+    print(cv2.contourArea(box))
