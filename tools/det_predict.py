@@ -32,7 +32,7 @@ def resize_image(img, short_size):
 
 
 class DetModel:
-    def __init__(self, model_path, post_p_thre=0.7, gpu_id=None):
+    def __init__(self, model_path, box_thresh=0.7, pos_thresh=0.3, gpu_id=None):
         '''
         初始化pytorch模型
         :param model_path: 模型地址(可以是模型的参数或者参数和计算图一起保存的文件)
@@ -52,7 +52,8 @@ class DetModel:
         self.model = get_model(config['arch'])
         # config['post_processing']['args']['unclip_ratio'] = 3
         self.post_process = get_post_processing(config['post_processing'])
-        self.post_process.box_thresh = post_p_thre
+        self.post_process.box_thresh = box_thresh
+        self.post_process.thresh = pos_thresh
         self.img_mode = config['dataset']['train']['dataset']['args']['img_mode']
         self.model.load_state_dict(checkpoint['state_dict'])
         self.model.to(self.device)

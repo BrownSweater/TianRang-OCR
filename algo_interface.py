@@ -6,6 +6,7 @@
 import os
 import cv2
 import json
+import torch
 import pprint
 import platform
 import numpy as np
@@ -49,7 +50,8 @@ class AlgoInterface(object):
         init det model and rec model
         :return:
         '''
-        self.det_model = DetModel(self.config.det_model_path, self.config.det_thre, gpu_id=self.config.device_id)
+        self.det_model = DetModel(self.config.det_model_path, self.config.det_box_thresh, self.config.det_pos_thresh,
+                                  gpu_id=self.config.device_id)
         self.logger.info('init det model')
         self.logger.info('========================================================================')
         if self.config.use_hyperlpr:
@@ -81,7 +83,7 @@ class AlgoInterface(object):
         use gpu or cpu and set cpu threads
         :return:
         '''
-        os.environ['OMP_NUM_THREADS'] = str(self.config.cpu_num_thread)
+        torch.set_num_threads(self.config.cpu_num_thread)
         if self.config.device_id is None:
             os.environ["CUDA_VISIBLE_DEVICES"] = ''
             self.logger.info('Use CPU')
@@ -90,6 +92,23 @@ class AlgoInterface(object):
             os.environ["CUDA_VISIBLE_DEVICES"] = str(self.config.device_id)
             self.logger.info(f'Use GPU: {self.config.device_id}')
             self.config.device_id = 0
+
+    @staticmethod
+    def _vis(img, box, text, prob, offset=(0, 0)):
+        im_h, im_w = img.shape[:2]
+        text_scale = max(1, im_h / 1600.)  # 1600.
+        text_thickness = 1
+        x1, y1 = int(box[0][0]), int(box[0][1])
+        x1 += offset[0]
+        y1 += offset[1]
+        rec_text = text
+        prob_text = f'{prob}'
+        t_size = cv2.getTextSize(rec_text, cv2.FONT_HERSHEY_PLAIN, text_scale, text_thickness)[0]
+        img = cv2ImgAddText(img, text, (x1, y1 - int(t_size[1] * 2)), textColor=(225, 255, 255),
+                            textSize=t_size[1] * 2)
+        img = cv2ImgAddText(img, prob_text, (x1, y1 - int(t_size[1] * 4)), textColor=(225, 255, 255),
+                            textSize=t_size[1] * 2)
+        return img
 
     def __call__(self, img, *args, **kwargs):
         '''
@@ -109,16 +128,20 @@ class AlgoInterface(object):
         results = []
         rec_time = 0
         for i, box in enumerate(boxes_list):
-            rec_img = CropWordBox.crop_image_by_bbox(img, box, self.config.rec_crop_ratio)
-            text, prob, t = self.rec_model.predict(rec_img)
-            rec_time += t
-            prob = round(prob, 3)
-            # if self.vis:
-            #     draw_img = cv2ImgAddText(draw_img, text, (box[0][0], box[0][1] - 40), textColor=(255, 255, 0),
-            #                              textSize=40)
-            #     draw_img = cv2ImgAddText(draw_img, f'{prob:.3f}', (box[3][0], box[3][1] + 5), textColor=(255, 255, 0),
-            #                              textSize=40)
-            results.append({'box': box.tolist(), 'recognition': text, 'prob': prob})
+            tmp_result = None
+            for r in self.config.rec_crop_ratio:
+                # rec_img = CropWordBox.crop_image_by_bbox(img, box, self.config.rec_crop_ratio)
+                rec_img = CropWordBox.crop_image_by_bbox(img, box, r)
+                text, prob, t = self.rec_model.predict(rec_img)
+                rec_time += t
+                prob = round(prob, 3)
+                det_score = round(score_list[i].astype(float), 3)
+                if tmp_result is None or prob > tmp_result['prob']:
+                    tmp_result = {'box': box.tolist(), 'recognition': text, 'prob': prob}
+            results.append(tmp_result)
+        if self.vis:
+            for result in results:
+                draw_img = self._vis(draw_img, result['box'], result['recognition'], result['prob'])
         self.logger.info(f'========================================================================\n'
                          f'det preprocess time: {det_time[0] * 1000: .1f}ms \n'
                          f'det inference time: {det_time[1] * 1000: .1f}ms \n'
@@ -134,7 +157,7 @@ if __name__ == '__main__':
     if platform.system() == 'Darwin':
         os.environ['KMP_DUPLICATE_LIB_OK'] = 'True'
     PATH = os.path.abspath(os.path.dirname(__file__))
-    model = AlgoInterface(json_config_path=os.path.join(PATH, 'service_config.json'))
+    model = AlgoInterface(json_config_path=os.path.join(PATH, 'interface_config.json'))
     results, draw_img = model('苏A5RH08.jpg')
     print(results)
     cv2.imshow('test', draw_img)
@@ -144,4 +167,4 @@ if __name__ != '__main__':
     if platform.system() == 'Darwin':
         os.environ['KMP_DUPLICATE_LIB_OK'] = 'True'
     PATH = os.path.abspath(os.path.dirname(__file__))
-    model = AlgoInterface(json_config_path=os.path.join(PATH, 'service_config.json'))
+    model = AlgoInterface(json_config_path=os.path.join(PATH, 'interface_config.json'))
