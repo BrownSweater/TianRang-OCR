@@ -9,3 +9,6 @@ static/
 .DS_Store
 !flask_utils/config.json
 !service_config.json
+*.pyc
+__pycache__
+*/__pycache__
