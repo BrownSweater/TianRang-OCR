@@ -9,7 +9,7 @@ ENV LC_ALL=C.UTF-8
 
 RUN git submodule add git@git.tianrang-inc.com:algo-brain/gateway.git
 
-COPY ./ /tianrang-ocr
+COPY .. /tianrang-ocr
 RUN mkdir -p /tianrang-ocr/gateway/log
 WORKDIR /tianrang-ocr
 
