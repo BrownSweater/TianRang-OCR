@@ -8,15 +8,8 @@ TianRang-OCR致力于打造一个实用的OCR工具库，集成常见的OCR算�
 
 ## 构建Docker镜像
 
-| 镜像版本                            | 说明         |
-| ----------------------------------- | ------------ |
-| harbor.tianrang.com/traffic/lpr:1.0 | 初次基础镜像 |
-|                                     |              |
-
-
-
 ```shell
-docker build --no-cache -t harbor.tianrang.com/traffic/lpr:1.0 .
+docker build --no-cache -t harbor.tianrang.com/traffic/lpr:2.0 .
 ```
 
 
@@ -33,56 +26,17 @@ docker build --no-cache -t harbor.tianrang.com/traffic/lpr:1.0 .
 
 ## 车牌识别服务
 
-使用此仓库在在CCPD上进行训练，得到车牌检测模型（2M）和车牌识别模型（7M），可以尝试部署在移动端，由于CCPD上只有蓝牌，并且皖牌占大多数，所以目前模型存在以下问题：
-
-- 仅支持蓝牌，其他车牌如：黄牌、新能源车牌、白牌效果较差
-- 不支持双行车牌
-- 对部分省份的车牌效果较差
-- 识别模型可以进一步压缩
-
-### Flask部署
-
-[Flask部署](wiki/车牌识别服务部署文档.md)
-
-- 建议使用CPU进行部署，在E5-2630v3@2.40GHz大概5FPS。
-- 输入图片仅为为车辆区域时，设置short_size为416
-- 输入图片为完整的图片时，设置short_size为736或者1024，耗时会显著提升
-- 若输入图片小于416是，设置short_size为300
-
-### 部署接口文档
-
-[部署接口文档](wiki/车牌识别接口文档.md)
-
-### Flask Web demo
-
-参数参考flask部署文档
-
-`python app_demo.py --port 8484 --rec_model_path weights/rec_res18.pth`
-
-### 算法接口调用文档
-
-[算法接口调用文档](wiki/算法接口文档.md)
-
-### Result
-
-[CCPD数据集简介及车牌识别结果](wiki/CCPD数据集简介及结果.md)
-
-### 示例
-
-![image-20200623172832218](wiki/lpr1.png)
+[车牌识别服务简介](wiki/车牌识别服务简介.md)，其中包括使用场景、可视化样例、精度评估、速度评估、接口文档、web demo等。
 
 
-
-![image-20200623173038064](wiki/lpr2.png)
-
-![image-20200623173236315](wiki/lpr3.png)
 
 ## 近期更新
+
+- 2020.9.15，本次更新为tianrang-ocr V2.0版本，主要更新如下：提供新的车牌检测模型；检测支持使用mobilev3为backbone，支持通道的scale；识别模型多次预测, 根据prob选择最优识别结果，会带来额外的时间开销。其他更新参考，[more](wiki/更新.md)
 
 
 - 2020.7.8，添加算法服务的对外调用接口
 - 2020.6.24，添加dockerfile；添加requirments.txt；修复部署时会下载ImageNet预训练模型的问题。
-- 2020.6.23初次提交：支持DBNet作为检测模型；多种backbone的CTCHead的识别模型。
 - [more](wiki/更新.md)
 
 ## TO DO
@@ -90,7 +44,7 @@ docker build --no-cache -t harbor.tianrang.com/traffic/lpr:1.0 .
 ### BackBone
 
 - [ ] 支持glouncv Resnet
-- [ ] mobilenetv3支持检测模型（目前仅支持识别）
+- [x] mobilenetv3支持检测模型（目前仅支持识别）
 
 ### 识别算法
 
