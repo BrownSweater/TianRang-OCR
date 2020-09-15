@@ -12,7 +12,10 @@ TianRang-OCR致力于打造一个实用的OCR工具库，集成常见的OCR算�
 docker build --no-cache -t harbor.tianrang.com/traffic/lpr:2.0 .
 ```
 
+启动时加上如下参数，可解决中文和时区的问题
 
+- 中文：`--env LANG=C.UTF-8 --env LC_ALL=C.UTF-8`
+- 时区：`-v /etc/localtime:/etc/localtime:ro`
 
 ## 开始训练
 
