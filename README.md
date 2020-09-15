@@ -9,7 +9,7 @@ TianRang-OCR致力于打造一个实用的OCR工具库，集成常见的OCR算�
 ## 构建Docker镜像
 
 ```shell
-docker build --no-cache -t harbor.tianrang.com/traffic/lpr:2.0 .
+docker build -f Dockerfile_dev --no-cache -t harbor.tianrang.com/traffic/lpr:2.0 .
 ```
 
 启动时加上如下参数，可解决中文和时区的问题
