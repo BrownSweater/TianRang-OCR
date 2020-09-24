@@ -105,7 +105,7 @@ class BaseTrainer:
             if self.config['lr_scheduler']['type'] != 'WarmupPolyLR':
                 self.scheduler.step()
             self._on_epoch_finish()
-        if self.tensorboard_enable:
+        if self.tensorboard_enable and self.config['local_rank'] == 0:
             self.writer.close()
         self._on_train_finish()
 
